@@ -7,9 +7,10 @@ import SimpleButtonView from '../simpleButton/SimpleButtonView'
 
 export default TextEntryScreen = (props) => {
     let {
-        stateKey,
-        placeholder
+        stateKey
     } = props
+
+    console.log("PRIZA", props)
 
     class TextEntryScreenContainer extends Component {
         constructor(props) {
@@ -22,20 +23,18 @@ export default TextEntryScreen = (props) => {
 
         _renderForm = () => {
             return <TextInput 
+                        style={styles.inputTextStyle} 
+                        value={this.state.input}
+                        onChangeText={this.onChange}
                         clearButtonMode={"while-editing"}
                         keyboardType={"ascii-capable"}
                         returnKeyType={"next"}
-                        value={this.state.input}
-                        onChangeText={this.onChange}
-                        placeholder={placeholder}
-                        placeholderTextColor={'black'}
-                        style={styles.inputTextStyle} />
+                        {...props}
+                    />
         }
 
         onChange = (data) => {
-            this.setState({
-                input: data
-            })
+            this.setState({input: data})
         }
 
         _onPress = (values) => {
@@ -45,7 +44,9 @@ export default TextEntryScreen = (props) => {
 
         render() {
             return (
-                <SimpleButtonView {...props} {...this.props} onPress={this._onPress} middle={this._renderForm()} />
+                <SimpleButtonView {...props} {...this.props} 
+                    onPress={this._onPress} 
+                    middle={this._renderForm()} />
             )
         }
     }
@@ -66,13 +67,3 @@ const styles = StyleSheet.create({
         borderBottomColor: 'gray'
     }
   });
-
-// SimpleButtonScreen.propTypes = {
-//     header: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
-//     buttonText: PropTypes.string
-// }
-
-// SimpleButtonScreen.defaultProps = {
-//     header: 'Welcome to this APP!',
-//     buttonText: 'Continue'
-// }

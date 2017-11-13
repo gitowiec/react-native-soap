@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"is-url": "^1.2.2",
+		"lodash": "^4.17.4",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
 		"react-native-confirmation-code-input": "https://github.com/Jonovono/react-native-confirmation-code-input",

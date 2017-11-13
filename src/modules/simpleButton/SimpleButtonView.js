@@ -6,23 +6,28 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 export default SimpleButtonScreenView = ({
     backgroundStyle,
     backgroundImage,
+    left,
+    right,
+
     header,
     headerContainerStyle,
     headerStyle,
+
     middle,
+
     footer,
     footerContainerStyle,
     footerStyle,
+
+    hideButton,
     disableButton,
     onPress,
     buttonText,
-    screenProps,
 
-    left,
-    right,
+    screenProps,
+    navigation,
     onLeftPressed,
     onRightPressed,
-    navigation
 }) => {
 
     _press = () => {
@@ -57,10 +62,12 @@ export default SimpleButtonScreenView = ({
 
             <FixedHeightView data={footer} containerStyle={footerContainerStyle} style={footerStyle} />
 
-            <ButtonView
-                disableButton={disableButton}
-                onButtonPressed={_press}
-                text={buttonText} />
+            {!hideButton && 
+                <ButtonView
+                    disableButton={disableButton}
+                    onButtonPressed={_press}
+                    text={buttonText} />
+            }
         </BackgroundView>
     )
 }

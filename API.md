@@ -34,6 +34,8 @@ let OnboarderView = Onboarder(ScreenConfig, OnboarderConfig)
 
 ```
 {
+    requestPermissions: [""]
+
     backgroundStyle,
     backgroundImage,
 
@@ -50,7 +52,65 @@ let OnboarderView = Onboarder(ScreenConfig, OnboarderConfig)
     footerContainerStyle,
     footerStyle,
 
+    hideButton,
     disableButton,
     buttonText
+}
+```
+
+## TextEntryScreen
+
+```
+{
+    ...SimpleButtonScreen.Props,
+    ...TextInput.props,
+
+    stateKey,        // This is where whatever is entered into the text field will be saved
+}
+```
+
+## Permission
+
+```
+{
+    stateKey, 
+    
+    backgroundStyle,
+    backgroundImage,
+
+    right,
+    left,
+    header,
+    headerContainerStyle,
+    headerStyle,
+
+    subheader,
+    subheaderContainerStyle,
+    subheaderStyle,
+
+    permissionContainerStyle,
+    permissionStyle,
+
+    approvedPermissionContainerStyle,
+    approvedPermissionStyle,
+
+
+
+    permissions: [
+        {
+            permission: "",
+            required: true,
+            image: "",
+
+            title: "",
+            subtitle: "",
+
+            containerStyle,
+            style,
+            approvedContainerStyle,
+            approvedStyle
+
+        }
+    ]
 }
 ```

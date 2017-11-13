@@ -21,7 +21,7 @@ let lines = require('./src/assets/images/lines.png')
 
 import {Onboarder} from './src/Onboarder'
 
-import {SimpleButtonScreen, TextEntryScreen, PhoneNumberAuthFlow} from './src/modules'
+import {SimpleButtonScreen, TextEntryScreen, PhoneNumberAuthFlow, PermissionScreen} from './src/modules'
 
 let backgroundColor = 'white'
 
@@ -47,7 +47,8 @@ let TextView = TextEntryScreen({
   backgroundStyle: {
     backgroundColor
   },
-  stateKey: 'username'
+  stateKey: 'username',
+  placeholder: 'test'
 })
 
 let PhoneView = PhoneNumberAuthFlow({
@@ -58,6 +59,30 @@ let PhoneView = PhoneNumberAuthFlow({
   stateKey: 'phone',
 })
 
+let Permission = PermissionScreen({
+  header: 'One last thing...',
+  stateKey: 'permissions',
+  permissions: [
+    {
+      permission: 'microphone',
+      title: 'Allow Microphone',
+      subtitle: 'So your friends can hear your beautiful voice',
+      required: true
+    },
+    {
+      permission: 'camera',
+      title: 'Allow Camera',
+      subtitle: 'So your friends see your pretty face',
+      required: true
+    },
+    {
+      permission: 'notifications',
+      title: 'Allow Notifications',
+      subtitle: 'So you know when your friends have arrived',
+      required: false
+    }
+  ]
+})
 
 const OnboarderView = Onboarder({
   Initial: {
@@ -77,9 +102,13 @@ const OnboarderView = Onboarder({
   },
   Auth: {
     screen: PhoneAuth
+  },
+  Per: {
+    screen: Permission
   }
 }, {
-  order: ['Initial', 'Auth', 'One'],
+  order: ['Per', 'Initial']
+  // order: ['Per', 'One', 'Initial', 'Auth'],
   // animation: 'push' // "slide", "push"
 })
 
